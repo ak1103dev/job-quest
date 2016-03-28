@@ -6,6 +6,7 @@ module.exports = function(app){
 
 
 	app.get('/trips', function(req, res){
+		console.log("list all trips");
 		Trip.find({}, function(err, trips) {
 			if(err)
 				console.log(err);
@@ -19,9 +20,9 @@ module.exports = function(app){
 
 	app.post('/trips', function(req, res){
 		var newTrip = new Trip();
-		newTrip.trip.name = req.params.name;
-		newTrip.trip.price = req.params.price;
-		newTrip.trip.description = req.params.description;
+		newTrip.trip.name = req.body.name;
+		newTrip.trip.price = req.body.price;
+		newTrip.trip.description = req.body.description;
 		console.log("create new trip");
 		newTrip.save(function(err){
 			if(err)
@@ -31,6 +32,7 @@ module.exports = function(app){
 	});
 
 	app.get('/trips/:id', function(req, res){
+		console.log('get one trip');
 		Trip.findOne({ '_id': req.params.id }, function(err, trip) {
 			if(err)
 				console.log(err);
@@ -43,15 +45,17 @@ module.exports = function(app){
 	});
 
 	app.put('/trips/:id', function(req, res){
-		
+		console.log("update trip")
 	});
 
 	app.delete('/trips/:id', function(req, res){
+		console.log("delete trip");
 		Trip.remove({ '_id': req.params.id }, function(err, trip) {
 			if(err)
 				console.log(err);
-			if(trip)
+			if(trip) {
 				res.send(trip);
+			}
 			else {
 				res.send("no data");
 			}
