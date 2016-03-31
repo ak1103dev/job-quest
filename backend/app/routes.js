@@ -7,13 +7,13 @@ module.exports = function(app){
 
 	app.get('/trips', function(req, res){
 		console.log("list all trips");
-		Trip.find({}, function(err, trips) {
+		Trip.find({}, '_id trip.name', function(err, trips) {
 			if(err)
 				console.log(err);
 			if(trips)
 				res.send(trips);
 			else {
-				res.send("no data");
+				res.send("no any trip");
 			}
 		});
 	});
