@@ -19,16 +19,24 @@ module.exports = function(app){
 	});
 
 	app.post('/trips', function(req, res){
-		var newTrip = new Trip();
-		newTrip.trip.name = req.body.name;
-		newTrip.trip.price = req.body.price;
-		newTrip.trip.description = req.body.description;
-		console.log("create new trip");
-		newTrip.save(function(err){
+		Trip.findOne({'trip.name': req.body.name}, function(err, trip) {
 			if(err)
-				throw err;
+				console.log(err);
+			if(trip)
+				res.send('There is this name.');
+			else {
+				var newTrip = new Trip();
+				newTrip.trip.name = req.body.name;
+				newTrip.trip.price = req.body.price;
+				newTrip.trip.description = req.body.description;
+				console.log("create new trip");
+				newTrip.save(function(err){
+					if(err)
+						throw err;
+				});
+				res.send("create new trip");
+			}
 		});
-		res.send("create new trip");
 	});
 
 	app.get('/trips/:id', function(req, res){
