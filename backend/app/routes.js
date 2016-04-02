@@ -47,13 +47,23 @@ module.exports = function(app){
 			if(trip)
 				res.send(trip);
 			else {
-				res.send("no data");
+				res.send("no this trip");
 			}
 		});
 	});
 
 	app.put('/trips/:id', function(req, res){
 		console.log("update trip")
+		var update = {
+			'trip.name': req.body.name,
+			'trip.price': req.body.price,
+			'trip.description': req.body.description
+		};
+		Trip.update({ '_id': req.params.id }, update, function(err) {
+			if(err)
+				throw err;
+		});
+		res.send('updated');
 	});
 
 	app.delete('/trips/:id', function(req, res){
@@ -65,7 +75,7 @@ module.exports = function(app){
 				res.send(trip);
 			}
 			else {
-				res.send("no data");
+				res.send("can not delete");
 			}
 		});
 	});
