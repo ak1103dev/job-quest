@@ -50,4 +50,4 @@ Backend Task
 
 What is the difference between MongoDB and MySql?
 
-*\<Write your answer here>*
+MongoDB is similar to MySql. MongoDB is document-oriented database. It is easier to update schemas than MySql. Because MySql is sql database and it is fixed schemas.
