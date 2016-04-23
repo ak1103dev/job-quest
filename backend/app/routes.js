@@ -1,4 +1,4 @@
-var Trip = require('./models/trip');
+let Trip = require('./models/trip');
 module.exports = function(app){
 	// app.get('/', function(req, res){
 	// 	res.send("Hello world");
@@ -20,7 +20,7 @@ module.exports = function(app){
 
 	app.post('/trips', function(req, res){
 		console.log("create new trip");
-		var newTrip = new Trip();
+		let newTrip = new Trip();
 		newTrip.trip.name = req.body.name;
 		newTrip.trip.price = req.body.price;
 		newTrip.trip.description = req.body.description;
@@ -47,7 +47,7 @@ module.exports = function(app){
 
 	app.put('/trips/:id', function(req, res){
 		console.log("update trip")
-		var update = {
+		let update = {
 			'trip.name': req.body.name,
 			'trip.price': req.body.price,
 			'trip.description': req.body.description

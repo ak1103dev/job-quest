@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var tripSchema = mongoose.Schema({
+let tripSchema = mongoose.Schema({
 	trip: {
 		name: String,
 		price: Number,

@@ -1,12 +1,12 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 8080;
+let express = require('express');
+let app = express();
+let port = process.env.PORT || 8080;
 
-var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
+let mongoose = require('mongoose');
+let configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
 
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
